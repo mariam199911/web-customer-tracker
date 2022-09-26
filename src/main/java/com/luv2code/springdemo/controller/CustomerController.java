@@ -43,7 +43,7 @@ public class CustomerController {
 		return "customer-form";
 	}
 	
-	
+	 
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer thecustomer) {
 		Customerservice.saveCustomer(thecustomer);
@@ -57,8 +57,13 @@ public class CustomerController {
 		System.out.println(theCustomer);
 		theModel.addAttribute("customer",theCustomer);
 		
-		
 		return "customer-form";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int theId) {
+		Customerservice.deleteCustomer(theId);
+		return "redirect:/customer/list";
 	}
 	
 }
